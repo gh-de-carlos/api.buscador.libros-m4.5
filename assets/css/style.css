@@ -52,17 +52,10 @@ input {
 }
 
 @keyframes spin {
-  0% {
-    rotate: 0deg;
-    scale: 1;
-  }
-  /* 30% {
-    scale: 0.5;
-  } */
-  100% {
-    rotate: 10800deg;
-    scale: 0;
-  }
+  0% { rotate: 0deg; scale: 1; translate: 0, 0;}
+  80% { translate: 0vw, 0vh; }
+  90% { translate: 55vw -55vh; }
+  100% { rotate: 10800deg; scale: 0; translate: 50vw, -50vh }
 }
 
 .loading {

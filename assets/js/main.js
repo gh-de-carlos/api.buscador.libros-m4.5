@@ -3,6 +3,11 @@ const loader = document.querySelector(".loading");
 const template = document.querySelector("#results");
 form.addEventListener("submit", buscarLibrosPorAutor);
 
+// manejo de errores con las imágenes.
+window.addEventListener('error', (e) => {
+  if (e.target.tagName === 'IMG') e.target.src = './assets/img/book-placeholder-s.png';
+}, true);
+
 async function buscarLibrosPorAutor(e) {
   e.preventDefault();
   const search = e.target.elements.search.value || "J. K. Rowling";
@@ -45,7 +50,7 @@ function requestView(data) {
     tds[0].textContent = book.first_publish_year;
     tds[1].textContent = book.title;
     tds[2].textContent = book.author_name[0];
-    tds[3].innerHTML = `<img src="https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-S.jpg"?/>`;
+    tds[3].innerHTML = `<img src="https://covers.openlibrary.org/b/olid/${book.cover_edition_key}-S.jpg?default=false"/>`;
   })
   return clone;
 }
