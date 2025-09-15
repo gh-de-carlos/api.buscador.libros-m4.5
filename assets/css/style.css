@@ -3,6 +3,9 @@
 
 :root {
   --gap: 40px;
+  --highlight: rgb(223, 146, 4);
+  --bg-hover: #2e2b29;
+  --table-shadow: rgb(104, 41, 17);
 }
 
 * {
@@ -11,12 +14,32 @@
   box-sizing: border-box;
 }
 
+
 body {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: url('../img/bgL.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family:'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+nav ul {
+  display: flex;
+  gap: var(--gap);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  list-style: none;
+}
+
+main {
+  height: 100%;
   display: grid;
   place-content: center;
   background-color: #00000011;
-  font-family:'Montserrat', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 form {
@@ -66,13 +89,23 @@ input {
   align-items: center;
 
   position: fixed;
-  top: 30px;
-  right: 30px;
+  top: 50vh;
+  right: 50vw;
+  transform: translate(50%, -50%);
 
   background-color: red;
   color: white;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+table {
+  margin: 1rem auto;
+  
+  border-radius: 8px;
+  box-shadow: 0 0 8px 4px var(--table-shadow, #00000088);
+  background-color: #ffffffcc;
+  color: black;
 }
 
 tr td img {
@@ -88,6 +121,7 @@ caption, td, th {
   text-align: center;
 }
 td, th {
+  padding: 1rem;
   max-width: 25vw;
 }
 table, caption,
@@ -97,12 +131,11 @@ tr, th, td {
 }
 
 tr:hover > td{
-  background-color: #363636;
-  color: #f5f5f5;
-  color: #ffee00;
+  background-color: var(--bg-hover, #00000011);
+  color: var(--highlight, yellow);
 }
 
 tr:hover img {
   box-shadow: 0 0 2px 2px white;
-  box-shadow: 0 0 2px 2px #ffee00;
+  box-shadow: 0 0 2px 2px var(--highlight, yellow);
 }

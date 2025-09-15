@@ -1,30 +1,32 @@
+const main = document.querySelector("main");
 const form = document.querySelector("form");
 const loader = document.querySelector(".loading");
 const template = document.querySelector("#results");
+
+// evento submit del formulario
 form.addEventListener("submit", buscarLibrosPorAutor);
 
-// manejo de errores con las imágenes.
-window.addEventListener('error', (e) => {
-  if (e.target.tagName === 'IMG') e.target.src = './assets/img/book-placeholder-s.png';
-}, true);
-
+// función principal de búsqueda y renderizado 
 async function buscarLibrosPorAutor(e) {
   e.preventDefault();
   const search = e.target.elements.search.value || "J. K. Rowling";
   
   loader.style.display = "flex";
-  e.target.classList.remove("spin");
-  void e.target.offsetWidth;            // oooh pedazo de truco.
-  e.target.classList.add("spin");
+  main.innerHTML = '';
   
-  setTimeout(() => {                    // call order here is important!
-    document.body.innerHTML = '';
-    document.body.appendChild(table);
-  }, 2500);
+  // animación muy loca para presentar
+  // e.target.classList.remove("spin");
+  // void e.target.offsetWidth;            // oooh pedazo de truco.
+  // e.target.classList.add("spin");
   
   const data = await getData(search);   // try different line order
   const table = requestView(data);
   
+  setTimeout(() => {                    // call order here is important!
+    main.innerHTML = '';
+    main.appendChild(table);
+    loader.style.display = "none";
+  }, 1500);
 }
 
 async function getData(search) {
@@ -55,8 +57,10 @@ function requestView(data) {
   return clone;
 }
 
+// UTILIDADES
 
-// TODO esto depende del truco de la visibilidad del elemento
+// animación del loader
+// esto depende del truco de la visibilidad del elemento
 // cambiar a una función que sea invocada dinámicamente
 // y oculte el scope necesario.
 setInterval(animateLoader, 100);
@@ -72,11 +76,7 @@ function animateLoader() {
   }
 }
 
-// la api tiene 8 campos al nivel 1.
-// docs es la que nos interesa.
-// es un arreglo de {} y dentro las props:
-// docs[n].first_publish_year
-// docs[n].title
-// docs[n].author_name[0]
-// docs[n].cover_edition_key, agregar -M.jpg e insertar en img:src
-// https://covers.openlibrary.org/b/olid/OL12727407M-M.jpg
+// manejo de errores con las imágenes.
+window.addEventListener('error', (e) => {
+  if (e.target.tagName === 'IMG') e.target.src = './assets/img/book-placeholder-s.png';
+}, true);

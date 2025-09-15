@@ -17,11 +17,17 @@
   </head>
 
   <body>
-    <form action="">
-      <input type="search" placeholder="J. K. Rowling" name="search">
-      <input type="submit" value="Buscar">
-    </form>
-    <div class="loading"></div>
+    <header>
+      <div class="loading"></div>
+      <form action="">
+        <input type="search" placeholder="J. K. Rowling" name="search">
+        <input type="submit" value="Buscar" hidden>
+      </form>
+    </header>
+    
+    <main id="main">
+    </main>
+
     <template id="results">
       <table class="table">
         <caption>Resultados</caption>
